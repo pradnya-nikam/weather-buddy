@@ -10,6 +10,6 @@
 
 @implementation SearchService
 -(NSArray *)search:(NSString *)query{
-    return @[];
+    return @[@"search1",@"search2",@"search3"];
 }
 @end

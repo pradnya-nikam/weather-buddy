@@ -26,11 +26,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    _searchService = [SearchService new];
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
-    self.navigationItem.titleView = _searchController.searchBar;
+    self.tableView.tableHeaderView = _searchController.searchBar;
+//    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x,
+//                                                       self.searchController.searchBar.frame.origin.y,
+//                                                       self.searchController.searchBar.frame.size.width, 44.0);
+    
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
+    self.searchController.searchBar.delegate = self;
 
 }
 
@@ -48,10 +55,19 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-#pragma mark - Search Display Controller
+#pragma mark - Search Controller
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    [self.searchService search:searchController.searchBar.text];
+    NSLog(@"update called");
 }
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    NSArray *search = [self.searchService search:searchBar.text];
+    _searchResults = [NSMutableArray arrayWithArray:search];
+    [self.tableView reloadData];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+}
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
