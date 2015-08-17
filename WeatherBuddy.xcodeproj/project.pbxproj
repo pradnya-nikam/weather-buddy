@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4CFE0C421B7DC186006AD4AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C411B7DC186006AD4AD /* main.m */; };
 		4CFE0C451B7DC186006AD4AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C441B7DC186006AD4AD /* AppDelegate.m */; };
-		4CFE0C481B7DC186006AD4AD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C471B7DC186006AD4AD /* MasterViewController.m */; };
+		4CFE0C481B7DC186006AD4AD /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C471B7DC186006AD4AD /* SearchViewController.m */; };
 		4CFE0C4B1B7DC186006AD4AD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C4A1B7DC186006AD4AD /* DetailViewController.m */; };
 		4CFE0C4E1B7DC186006AD4AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFE0C4C1B7DC186006AD4AD /* Main.storyboard */; };
 		4CFE0C501B7DC186006AD4AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFE0C4F1B7DC186006AD4AD /* Images.xcassets */; };
@@ -34,8 +34,8 @@
 		4CFE0C411B7DC186006AD4AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4CFE0C431B7DC186006AD4AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4CFE0C441B7DC186006AD4AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4CFE0C461B7DC186006AD4AD /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		4CFE0C471B7DC186006AD4AD /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		4CFE0C461B7DC186006AD4AD /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		4CFE0C471B7DC186006AD4AD /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		4CFE0C491B7DC186006AD4AD /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		4CFE0C4A1B7DC186006AD4AD /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		4CFE0C4D1B7DC186006AD4AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,8 +89,8 @@
 			children = (
 				4CFE0C431B7DC186006AD4AD /* AppDelegate.h */,
 				4CFE0C441B7DC186006AD4AD /* AppDelegate.m */,
-				4CFE0C461B7DC186006AD4AD /* MasterViewController.h */,
-				4CFE0C471B7DC186006AD4AD /* MasterViewController.m */,
+				4CFE0C461B7DC186006AD4AD /* SearchViewController.h */,
+				4CFE0C471B7DC186006AD4AD /* SearchViewController.m */,
 				4CFE0C491B7DC186006AD4AD /* DetailViewController.h */,
 				4CFE0C4A1B7DC186006AD4AD /* DetailViewController.m */,
 				4CFE0C4C1B7DC186006AD4AD /* Main.storyboard */,
@@ -230,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CFE0C451B7DC186006AD4AD /* AppDelegate.m in Sources */,
-				4CFE0C481B7DC186006AD4AD /* MasterViewController.m in Sources */,
+				4CFE0C481B7DC186006AD4AD /* SearchViewController.m in Sources */,
 				4CFE0C6A1B7E0404006AD4AD /* SearchService.m in Sources */,
 				4CFE0C421B7DC186006AD4AD /* main.m in Sources */,
 				4CFE0C4B1B7DC186006AD4AD /* DetailViewController.m in Sources */,
@@ -428,6 +428,7 @@
 				4CFE0C641B7DC186006AD4AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CFE0C651B7DC186006AD4AD /* Build configuration list for PBXNativeTarget "WeatherBuddyTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +437,7 @@
 				4CFE0C671B7DC186006AD4AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

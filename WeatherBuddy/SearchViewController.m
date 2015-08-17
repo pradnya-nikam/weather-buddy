@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 prad. All rights reserved.
 //
 
-#import "MasterViewController.h"
+#import "SearchViewController.h"
 #import "DetailViewController.h"
 #import "SearchService.h"
 
-@interface MasterViewController () <UISearchResultsUpdating, UISearchBarDelegate>
+@interface SearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
 @property (nonatomic, strong) UISearchController *searchController;
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property SearchService *searchService;
 @end
 
-@implementation MasterViewController
+@implementation SearchViewController
 
 - (void)awakeFromNib {
     [super awakeFromNib];
