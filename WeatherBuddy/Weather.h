@@ -15,7 +15,7 @@
 @property NSString *iconName;
 @property NSString *weatherDescription;
 @property NSNumber *clouds;
-@property NSNumber *humidity;
+@property NSNumber *windSpeed;
 @property NSNumber *pressure;
 
 +(Weather *)weatherWithJSON:(NSDictionary *)json;

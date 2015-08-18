@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-#import "DetailViewController.h"
+#import "CityWeatherDetailViewController.h"
 #import "SearchService.h"
 #import "City.h"
 #import "Weather.h"
@@ -80,7 +80,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CityTableViewCell *cityCell = [tableView dequeueReusableCellWithIdentifier:@"CityCell" forIndexPath:indexPath];
+    CityTableViewCell *cityCell = [tableView dequeueReusableCellWithIdentifier:[CityTableViewCell getIdentifier] forIndexPath:indexPath];
     City *city = self.searchResults[indexPath.row];
     [cityCell populateWithCity:city];
     return cityCell;
@@ -93,8 +93,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.searchResults[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        City *city = self.searchResults[indexPath.row];
+        [[segue destinationViewController] setCity:city];
     }
 }
 

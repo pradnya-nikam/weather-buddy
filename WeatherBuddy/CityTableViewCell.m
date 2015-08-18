@@ -9,18 +9,16 @@
 #import "CityTableViewCell.h"
 #import "City.h"
 #import "Weather.h"
+#import "ImageUtil.h"
 
-NSString * const IMAGE_URL=@"http://openweathermap.org/img/w/%@.png";
 @implementation CityTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
++ (NSString *)getIdentifier{
+    return @"city-cell";
 }
 
 -(void)populateWithCity:(City *)city{
@@ -29,18 +27,8 @@ NSString * const IMAGE_URL=@"http://openweathermap.org/img/w/%@.png";
     [self.weatherDesc setText:latestWeather.weatherDescription];
     [self.city setText:city.name];
     [self.tempRange setText:[NSString stringWithFormat:@"%@ - %@°C",latestWeather.temp.min,latestWeather.temp.max]];
-    [self loadImageWithName:latestWeather.iconName];
+    [ImageUtil loadImageWithName:latestWeather.iconName inImageView:self.weatherImage];
     
-}
--(void)loadImageWithName:(NSString *)name {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *imageUrl = [NSString stringWithFormat:IMAGE_URL,name];
-                             
-        NSData *imageFromNetwork = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
-        
-        if(imageFromNetwork)
-            self.weatherImage.image = [UIImage imageWithData:imageFromNetwork];
-    });
 }
                    
 @end

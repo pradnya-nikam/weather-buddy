@@ -12,7 +12,9 @@
 @implementation City
 + (City *) cityWithJSON:(NSDictionary *)json{
     City *city = [City new];
-    city.name = [json valueForKeyPath:@"city.name"];
+    NSString *name = [json valueForKeyPath:@"city.name"];
+    NSString *country = [json valueForKeyPath:@"city.country"];
+    city.name = [NSString stringWithFormat:@"%@, %@",name,country];
     
     city.weather = [NSMutableArray new];
     NSArray *weatherJSONArray = json[@"list"];

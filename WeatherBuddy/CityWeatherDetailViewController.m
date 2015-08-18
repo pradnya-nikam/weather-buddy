@@ -6,41 +6,52 @@
 //  Copyright (c) 2015 prad. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "CityWeatherDetailViewController.h"
+#import "WeatherDayTableCell.h"
+#import "Weather.h"
 
-@interface DetailViewController ()
+@interface CityWeatherDetailViewController ()
 
 @end
 
-@implementation DetailViewController
+@implementation CityWeatherDetailViewController
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-            
-        // Update the view.
+- (void)setCity:(id)city {
+    if (_city != city) {
+        _city = city;
         [self configureView];
     }
 }
 
 - (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if (self.city) {
+        [self.navigationItem setTitle:_city.name];
+        [self.weatherDayTableView setDataSource:self];
+        [self.weatherDayTableView setDelegate:self];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma UITableViewDatasource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _city.weather.count;
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WeatherDayTableCell *weatherCell = [tableView dequeueReusableCellWithIdentifier:[WeatherDayTableCell getIdentifier] forIndexPath:indexPath];
+    Weather *weather = _city.weather[indexPath.row];
+    [weatherCell populateWithWeather:weather];
+    return weatherCell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100;
+}
 @end

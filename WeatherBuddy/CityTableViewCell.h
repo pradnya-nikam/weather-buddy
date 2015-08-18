@@ -16,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *weatherDesc;
 
 -(void) populateWithCity:(City *)city;
-
++ (NSString *)getIdentifier;
 @end

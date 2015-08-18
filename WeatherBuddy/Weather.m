@@ -13,7 +13,7 @@
     Weather *weather = [Weather new];
     
     weather.pressure = json[@"pressure"];
-    weather.humidity = json[@"humidity"];
+    weather.windSpeed = json[@"speed"];
     weather.clouds = json[@"clouds"];
     weather.date = json[@"dt"];
 
