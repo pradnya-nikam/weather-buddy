@@ -33,13 +33,10 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.tableView.tableHeaderView = _searchController.searchBar;
-//    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x,
-//                                                       self.searchController.searchBar.frame.origin.y,
-//                                                       self.searchController.searchBar.frame.size.width, 44.0);
-    
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
+    [self.searchController.searchBar setPlaceholder:@"search for cities to view weather"];
     self.searchController.searchBar.delegate = self;
 
 }
@@ -60,7 +57,7 @@
 
 #pragma mark - Search Controller
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSLog(@"update called");
+    //Not doing anything when search updates
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{

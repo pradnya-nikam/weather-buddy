@@ -28,7 +28,7 @@ NSString * const IMAGE_URL=@"http://openweathermap.org/img/w/%@.png";
     Weather *latestWeather = city.weather[0];
     [self.weatherDesc setText:latestWeather.weatherDescription];
     [self.city setText:city.name];
-    [self.tempRange setText:[NSString stringWithFormat:@"%@%@",latestWeather.temp.max,latestWeather.temp.min]];
+    [self.tempRange setText:[NSString stringWithFormat:@"%@ - %@°C",latestWeather.temp.min,latestWeather.temp.max]];
     [self loadImageWithName:latestWeather.iconName];
     
 }
