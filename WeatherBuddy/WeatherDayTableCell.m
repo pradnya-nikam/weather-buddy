@@ -22,19 +22,17 @@ NSString * const DATE_FORMAT=@"dd MMM";
 }
 
 -(void)populateWithWeather:(Weather *)weather{
-    _maxTemp.text = [NSString stringWithFormat:@"%@°C" ,weather.temp.max];
-    _minTemp.text = [NSString stringWithFormat:@"%@°C" ,weather.temp.min];
+    _maxTemp.text = [NSString stringWithFormat:@"%g°C" ,weather.temp.max.floatValue];
+    _minTemp.text = [NSString stringWithFormat:@"%g°C" ,weather.temp.min.floatValue];
     _cloudAndPressure.text = [NSString stringWithFormat:@"clouds: %@\%%, %g hpa" ,weather.clouds,weather.pressure.floatValue];
     _weatherDescription.text = weather.weatherDescription;
     _wind.text = [NSString stringWithFormat:@"%@ m/s" ,weather.windSpeed];
-    [ImageUtil loadImageWithName:weather.iconName inImageView:self.weatherImage];
     
     NSDate *weatherDate = [[NSDate alloc] initWithTimeIntervalSince1970:weather.date.doubleValue];
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:DATE_FORMAT];
     _date.text = [dateFormatter stringFromDate:weatherDate];
-
+    [ImageUtil loadImageWithName:weather.iconName inImageView:self.weatherImage];
 }
 
 @end
