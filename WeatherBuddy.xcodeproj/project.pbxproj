@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7897C11B8209BE0024BF4A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C01B8209BE0024BF4A /* City.m */; };
+		4C7897C41B820A040024BF4A /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C31B820A040024BF4A /* Weather.m */; };
+		4C7897C71B820B4A0024BF4A /* Temperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C61B820B4A0024BF4A /* Temperature.m */; };
+		4C7897CA1B8216F80024BF4A /* CityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C91B8216F80024BF4A /* CityTableViewCell.m */; };
 		4CFE0C421B7DC186006AD4AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C411B7DC186006AD4AD /* main.m */; };
 		4CFE0C451B7DC186006AD4AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C441B7DC186006AD4AD /* AppDelegate.m */; };
 		4CFE0C481B7DC186006AD4AD /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE0C471B7DC186006AD4AD /* SearchViewController.m */; };
@@ -29,6 +33,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C7897BF1B8209BE0024BF4A /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		4C7897C01B8209BE0024BF4A /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
+		4C7897C21B820A040024BF4A /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		4C7897C31B820A040024BF4A /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		4C7897C51B820B4A0024BF4A /* Temperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Temperature.h; sourceTree = "<group>"; };
+		4C7897C61B820B4A0024BF4A /* Temperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Temperature.m; sourceTree = "<group>"; };
+		4C7897C81B8216F80024BF4A /* CityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewCell.h; sourceTree = "<group>"; };
+		4C7897C91B8216F80024BF4A /* CityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewCell.m; sourceTree = "<group>"; };
 		4CFE0C3C1B7DC186006AD4AD /* WeatherBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFE0C401B7DC186006AD4AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CFE0C411B7DC186006AD4AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,6 +78,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C7897CB1B82170A0024BF4A /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CFE0C461B7DC186006AD4AD /* SearchViewController.h */,
+				4CFE0C471B7DC186006AD4AD /* SearchViewController.m */,
+				4CFE0C491B7DC186006AD4AD /* DetailViewController.h */,
+				4CFE0C4A1B7DC186006AD4AD /* DetailViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		4C7897CC1B8217150024BF4A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4C7897BF1B8209BE0024BF4A /* City.h */,
+				4C7897C01B8209BE0024BF4A /* City.m */,
+				4C7897C21B820A040024BF4A /* Weather.h */,
+				4C7897C31B820A040024BF4A /* Weather.m */,
+				4C7897C51B820B4A0024BF4A /* Temperature.h */,
+				4C7897C61B820B4A0024BF4A /* Temperature.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		4C7897CD1B82172D0024BF4A /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4CFE0C431B7DC186006AD4AD /* AppDelegate.h */,
+				4CFE0C441B7DC186006AD4AD /* AppDelegate.m */,
+			);
+			name = delegate;
+			sourceTree = "<group>";
+		};
+		4C7897CE1B82173F0024BF4A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4CFE0C4C1B7DC186006AD4AD /* Main.storyboard */,
+				4CFE0C511B7DC186006AD4AD /* LaunchScreen.xib */,
+				4C7897C81B8216F80024BF4A /* CityTableViewCell.h */,
+				4C7897C91B8216F80024BF4A /* CityTableViewCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		4C7897CF1B8217470024BF4A /* service */ = {
+			isa = PBXGroup;
+			children = (
+				4CFE0C681B7E0404006AD4AD /* SearchService.h */,
+				4CFE0C691B7E0404006AD4AD /* SearchService.m */,
+			);
+			name = service;
+			sourceTree = "<group>";
+		};
 		4CFE0C331B7DC186006AD4AD = {
 			isa = PBXGroup;
 			children = (
@@ -87,18 +152,13 @@
 		4CFE0C3E1B7DC186006AD4AD /* WeatherBuddy */ = {
 			isa = PBXGroup;
 			children = (
-				4CFE0C431B7DC186006AD4AD /* AppDelegate.h */,
-				4CFE0C441B7DC186006AD4AD /* AppDelegate.m */,
-				4CFE0C461B7DC186006AD4AD /* SearchViewController.h */,
-				4CFE0C471B7DC186006AD4AD /* SearchViewController.m */,
-				4CFE0C491B7DC186006AD4AD /* DetailViewController.h */,
-				4CFE0C4A1B7DC186006AD4AD /* DetailViewController.m */,
-				4CFE0C4C1B7DC186006AD4AD /* Main.storyboard */,
+				4C7897CD1B82172D0024BF4A /* delegate */,
+				4C7897CC1B8217150024BF4A /* model */,
+				4C7897CB1B82170A0024BF4A /* controller */,
+				4C7897CE1B82173F0024BF4A /* view */,
+				4C7897CF1B8217470024BF4A /* service */,
 				4CFE0C4F1B7DC186006AD4AD /* Images.xcassets */,
-				4CFE0C511B7DC186006AD4AD /* LaunchScreen.xib */,
 				4CFE0C3F1B7DC186006AD4AD /* Supporting Files */,
-				4CFE0C681B7E0404006AD4AD /* SearchService.h */,
-				4CFE0C691B7E0404006AD4AD /* SearchService.m */,
 			);
 			path = WeatherBuddy;
 			sourceTree = "<group>";
@@ -231,6 +291,10 @@
 			files = (
 				4CFE0C451B7DC186006AD4AD /* AppDelegate.m in Sources */,
 				4CFE0C481B7DC186006AD4AD /* SearchViewController.m in Sources */,
+				4C7897CA1B8216F80024BF4A /* CityTableViewCell.m in Sources */,
+				4C7897C71B820B4A0024BF4A /* Temperature.m in Sources */,
+				4C7897C41B820A040024BF4A /* Weather.m in Sources */,
+				4C7897C11B8209BE0024BF4A /* City.m in Sources */,
 				4CFE0C6A1B7E0404006AD4AD /* SearchService.m in Sources */,
 				4CFE0C421B7DC186006AD4AD /* main.m in Sources */,
 				4CFE0C4B1B7DC186006AD4AD /* DetailViewController.m in Sources */,

@@ -9,6 +9,9 @@
 #import "SearchViewController.h"
 #import "DetailViewController.h"
 #import "SearchService.h"
+#import "City.h"
+#import "Weather.h"
+#import "CityTableViewCell.h"
 
 @interface SearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
 @property (nonatomic, strong) UISearchController *searchController;
@@ -65,6 +68,7 @@
     _searchResults = [NSMutableArray arrayWithArray:search];
     [self.tableView reloadData];
     [searchBar setShowsCancelButton:NO animated:YES];
+    [_searchController setActive:NO];
     [searchBar resignFirstResponder];
 }
 
@@ -79,11 +83,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = self.searchResults[indexPath.row];
-    cell.textLabel.text = [object description];
-    return cell;
+    CityTableViewCell *cityCell = [tableView dequeueReusableCellWithIdentifier:@"CityCell" forIndexPath:indexPath];
+    City *city = self.searchResults[indexPath.row];
+    [cityCell populateWithCity:city];
+    return cityCell;
 }
 
 
