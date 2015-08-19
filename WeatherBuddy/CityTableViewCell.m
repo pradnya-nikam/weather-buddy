@@ -27,8 +27,8 @@
     [self.weatherDesc setText:latestWeather.weatherDescription];
     [self.city setText:city.name];
     [self.tempRange setText:[NSString stringWithFormat:@"%@ - %@°C",latestWeather.temp.min,latestWeather.temp.max]];
-    [ImageUtil loadImageWithName:latestWeather.iconName inImageView:self.weatherImage];
     
+    [ImageUtil loadImageWithName:latestWeather.iconName inImageView:self.weatherImage];
 }
                    
 @end

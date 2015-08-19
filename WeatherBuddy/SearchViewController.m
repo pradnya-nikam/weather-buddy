@@ -29,40 +29,35 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 
     _searchService = [SearchService new];
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
-    self.tableView.tableHeaderView = _searchController.searchBar;
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.definesPresentationContext = YES;
-    [self.searchController.searchBar sizeToFit];
-    [self.searchController.searchBar setPlaceholder:@"search for cities to view weather"];
-    self.searchController.searchBar.delegate = self;
+    [self setUpSearchController];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAPIError:) name:API_ERROR_NOTIFICATION object:nil];
 
 }
-
-- (void)insertNewObject:(id)sender {
-    if (!self.searchResults) {
-        self.searchResults = [[NSMutableArray alloc] init];
-    }
-    [self.searchResults insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+-(void)setUpSearchController{
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    _searchController.searchResultsUpdater = self;
+    self.tableView.tableHeaderView = _searchController.searchBar;
+    self.tableView.tableHeaderView = _searchController.searchBar;
+    self.definesPresentationContext = YES;
+    [_searchController.searchBar sizeToFit];
+    [_searchController.searchBar setPlaceholder:@"search for cities to view weather"];
+    _searchController.searchBar.delegate = self;
 }
+
 
 #pragma mark - Search Controller
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    //Not doing anything when search updates
+    //Not doing anything on search update
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSArray *search = [self.searchService search:searchBar.text];
     _searchResults = [NSMutableArray arrayWithArray:search];
     [self.tableView reloadData];
+    
     [searchBar setShowsCancelButton:NO animated:YES];
     [_searchController setActive:NO];
     [searchBar resignFirstResponder];
@@ -85,8 +80,6 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please 
     return cityCell;
 }
 
-
-
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -100,7 +93,6 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please 
 #pragma API Error Handling 
 
 -(void) handleAPIError:(NSNotification *)notification{
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
                 message:[self getMessageFromUserInfo:notification.userInfo]
                 delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

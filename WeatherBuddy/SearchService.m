@@ -36,15 +36,14 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 -(NSArray *)search:(NSString *)query{
     NSArray *cityArray = [_queryParser parseSearchQuery:query];
     if (cityArray.count) {
-        return [self sendSearchRequestForCity:cityArray];
+        return [self searchForCities:cityArray];
     }else
         return @[];
 }
 
-- (NSArray *) sendSearchRequestForCity:(NSArray *)cities{
+- (NSArray *) searchForCities:(NSArray *)cities{
     NSMutableArray *cityWeathers = [NSMutableArray new];
     for (NSString *city in cities) {
-        
         APIResponse *response = [_weatherAPI searchForCity:city];
         if ([response isSuccess]) {
                 City *city = [City cityWithJSON:response.json];

@@ -28,10 +28,12 @@ NSString * const DATE_FORMAT=@"dd MMM";
     _weatherDescription.text = weather.weatherDescription;
     _wind.text = [NSString stringWithFormat:@"%@ m/s" ,weather.windSpeed];
     
+    //change date format from epoch to a readable one
     NSDate *weatherDate = [[NSDate alloc] initWithTimeIntervalSince1970:weather.date.doubleValue];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:DATE_FORMAT];
     _date.text = [dateFormatter stringFromDate:weatherDate];
+    
     [ImageUtil loadImageWithName:weather.iconName inImageView:self.weatherImage];
 }
 
