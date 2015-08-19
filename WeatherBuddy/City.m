@@ -23,4 +23,13 @@
     }
     return city;
 }
+
+-(Weather *)getLatestWeather{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date"
+                                                 ascending:YES];
+    NSArray *sortedArray;
+    sortedArray = [self.weather sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return sortedArray[0];
+}
 @end

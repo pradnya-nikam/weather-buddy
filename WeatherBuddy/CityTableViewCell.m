@@ -23,7 +23,7 @@
 
 -(void)populateWithCity:(City *)city{
     
-    Weather *latestWeather = city.weather[0];
+    Weather *latestWeather = [city getLatestWeather];
     [self.weatherDesc setText:latestWeather.weatherDescription];
     [self.city setText:city.name];
     [self.tempRange setText:[NSString stringWithFormat:@"%@ - %@°C",latestWeather.temp.min,latestWeather.temp.max]];

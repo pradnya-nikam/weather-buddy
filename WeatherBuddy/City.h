@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Weather;
 
 @interface City : NSObject
 @property NSString *name;
 @property NSMutableArray *weather;
 
+-(Weather *)getLatestWeather;
 + (City *) cityWithJSON:(NSDictionary *)json;
 @end
