@@ -57,8 +57,12 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 }
 
 -(void)handleErrorForResponse:(APIResponse *)response andQuery:(NSString *)query{
-    NSString *errorMessage = [NSString stringWithFormat:@"%@ for search : %@", response.errorMessage, query];
-    [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:@{@"errorMessage":errorMessage}];
+    NSDictionary *errorInfo=nil;
+    if(response){
+        NSString *errorMessage = [NSString stringWithFormat:@"%@ for search : %@", response.errorMessage, query];
+        errorInfo = @{@"errorMessage":errorMessage};
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:errorInfo];
 }
 
 @end

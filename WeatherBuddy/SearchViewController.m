@@ -13,7 +13,7 @@
 #import "Weather.h"
 #import "CityTableViewCell.h"
 
-NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please try again.";
+NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
 
 @interface SearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
 @property (nonatomic, strong) UISearchController *searchController;
