@@ -8,8 +8,10 @@
 
 #import "SearchService.h"
 #import "City.h"
+#import "APIError.h"
 
 NSString * const JSON_URL = @"http://api.openweathermap.org/data/2.5/forecast/daily?q=%@&cnt=14&units=metric&APPID=f4e5d60cb525957507b32ef0f683889e";
+NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 
 @implementation SearchService
 -(NSArray *)search:(NSString *)query{
@@ -48,12 +50,17 @@ NSString * const JSON_URL = @"http://api.openweathermap.org/data/2.5/forecast/da
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
         if(data){
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            City *city = [City cityWithJSON:json];
-            if (city) {
-                [cityWeathers addObject:city];
+            if(json[@"cod"]){
+                APIError *apiError = [APIError errorFromJSON:json];
+                [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:@{@"error":apiError}];
             }
+            City *city = [City cityWithJSON:json];
+            if (city)
+                [cityWeathers addObject:city];
+            
         }
     }
     return cityWeathers;
 }
+
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SearchService : NSObject
+extern NSString *API_ERROR_NOTIFICATION;
 -(NSArray *)search:(NSString *)query;
 
 @end

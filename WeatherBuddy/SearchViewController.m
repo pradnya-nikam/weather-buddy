@@ -12,6 +12,9 @@
 #import "City.h"
 #import "Weather.h"
 #import "CityTableViewCell.h"
+#import "APIError.h"
+
+NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please try again.";
 
 @interface SearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
 @property (nonatomic, strong) UISearchController *searchController;
@@ -38,12 +41,9 @@
     [self.searchController.searchBar sizeToFit];
     [self.searchController.searchBar setPlaceholder:@"search for cities to view weather"];
     self.searchController.searchBar.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAPIError:) name:API_ERROR_NOTIFICATION object:nil];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)insertNewObject:(id)sender {
@@ -96,6 +96,27 @@
         City *city = self.searchResults[indexPath.row];
         [[segue destinationViewController] setCity:city];
     }
+}
+
+#pragma API Error Handling 
+
+-(void) handleAPIError:(NSNotification *)notification{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                message:[self getMessageFromUserInfo:notification.userInfo]
+                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
+}
+
+-(NSString *) getMessageFromUserInfo:(NSDictionary *)userInfo{
+    APIError *apiError;
+    if(userInfo){
+        apiError = userInfo[@"error"];
+        if(apiError)
+            return apiError.message;
+    }
+    return DEFAULT_ERROR_MESSAGE;
 }
 
 @end
