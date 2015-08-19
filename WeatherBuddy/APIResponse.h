@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface APIError : NSObject
+@interface APIResponse : NSObject
 @property NSString *code;
-@property NSString *message;
+@property NSString *errorMessage;
 
-+(APIError *)errorFromJSON:(NSDictionary *)json;
-
++(APIResponse *)withJSON:(NSDictionary *)json;
+-(BOOL)isSuccess;
 @end

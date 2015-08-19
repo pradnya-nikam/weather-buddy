@@ -12,7 +12,6 @@
 #import "City.h"
 #import "Weather.h"
 #import "CityTableViewCell.h"
-#import "APIError.h"
 
 NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please try again.";
 
@@ -102,7 +101,7 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please 
 
 -(void) handleAPIError:(NSNotification *)notification{
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
                 message:[self getMessageFromUserInfo:notification.userInfo]
                 delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
@@ -110,11 +109,11 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured. Please 
 }
 
 -(NSString *) getMessageFromUserInfo:(NSDictionary *)userInfo{
-    APIError *apiError;
+    NSString *apiError;
     if(userInfo){
-        apiError = userInfo[@"error"];
+        apiError = userInfo[@"errorMessage"];
         if(apiError)
-            return apiError.message;
+            return apiError;
     }
     return DEFAULT_ERROR_MESSAGE;
 }

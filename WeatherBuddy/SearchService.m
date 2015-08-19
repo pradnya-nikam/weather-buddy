@@ -8,7 +8,7 @@
 
 #import "SearchService.h"
 #import "City.h"
-#import "APIError.h"
+#import "APIResponse.h"
 
 NSString * const JSON_URL = @"http://api.openweathermap.org/data/2.5/forecast/daily?q=%@&cnt=14&units=metric&APPID=f4e5d60cb525957507b32ef0f683889e";
 NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
@@ -50,17 +50,22 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
         if(data){
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            if(json[@"cod"]){
-                APIError *apiError = [APIError errorFromJSON:json];
-                [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:@{@"error":apiError}];
+            APIResponse *response = [APIResponse withJSON:json];
+            if ([response isSuccess]) {
+                City *city = [City cityWithJSON:json];
+                if (city)
+                    [cityWeathers addObject:city];
+            }else{
+                [self handleErrorForResponse:response andQuery:city];
             }
-            City *city = [City cityWithJSON:json];
-            if (city)
-                [cityWeathers addObject:city];
-            
         }
     }
     return cityWeathers;
+}
+
+-(void)handleErrorForResponse:(APIResponse *)response andQuery:(NSString *)query{
+    NSString *errorMessage = [NSString stringWithFormat:@"%@ for search : %@", response.errorMessage, query];
+    [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:@{@"errorMessage":errorMessage}];
 }
 
 @end
