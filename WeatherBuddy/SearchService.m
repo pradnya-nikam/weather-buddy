@@ -35,7 +35,10 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 
 -(NSArray *)search:(NSString *)query{
     NSArray *cityArray = [_queryParser parseSearchQuery:query];
-    return [self sendSearchRequestForCity:cityArray];
+    if (cityArray.count) {
+        return [self sendSearchRequestForCity:cityArray];
+    }else
+        return @[];
 }
 
 - (NSArray *) sendSearchRequestForCity:(NSArray *)cities{
