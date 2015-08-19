@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface APIResponse : NSObject
+@property NSDictionary *json;
 @property NSString *code;
 @property NSString *errorMessage;
 

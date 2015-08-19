@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C6C69671B845DC80091AD1D /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C69661B845DC80091AD1D /* QueryParser.m */; };
+		4C6C696A1B845F350091AD1D /* WeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C69691B845F350091AD1D /* WeatherAPI.m */; };
 		4C7897C11B8209BE0024BF4A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C01B8209BE0024BF4A /* City.m */; };
 		4C7897C41B820A040024BF4A /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C31B820A040024BF4A /* Weather.m */; };
 		4C7897C71B820B4A0024BF4A /* Temperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C61B820B4A0024BF4A /* Temperature.m */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C6C69651B845DC80091AD1D /* QueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParser.h; sourceTree = "<group>"; };
+		4C6C69661B845DC80091AD1D /* QueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParser.m; sourceTree = "<group>"; };
+		4C6C69681B845F350091AD1D /* WeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAPI.h; sourceTree = "<group>"; };
+		4C6C69691B845F350091AD1D /* WeatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAPI.m; sourceTree = "<group>"; };
 		4C7897BF1B8209BE0024BF4A /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		4C7897C01B8209BE0024BF4A /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		4C7897C21B820A040024BF4A /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
@@ -142,6 +148,10 @@
 			children = (
 				4CFE0C681B7E0404006AD4AD /* SearchService.h */,
 				4CFE0C691B7E0404006AD4AD /* SearchService.m */,
+				4C6C69651B845DC80091AD1D /* QueryParser.h */,
+				4C6C69661B845DC80091AD1D /* QueryParser.m */,
+				4C6C69681B845F350091AD1D /* WeatherAPI.h */,
+				4C6C69691B845F350091AD1D /* WeatherAPI.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -311,11 +321,13 @@
 				4C7897CA1B8216F80024BF4A /* CityTableViewCell.m in Sources */,
 				4C7897C71B820B4A0024BF4A /* Temperature.m in Sources */,
 				4C7897D21B8340AE0024BF4A /* WeatherDayTableCell.m in Sources */,
+				4C6C69671B845DC80091AD1D /* QueryParser.m in Sources */,
 				4C7897C41B820A040024BF4A /* Weather.m in Sources */,
 				4C7897C11B8209BE0024BF4A /* City.m in Sources */,
 				4CFE0C6A1B7E0404006AD4AD /* SearchService.m in Sources */,
 				4CFE0C421B7DC186006AD4AD /* main.m in Sources */,
 				4CFE0C4B1B7DC186006AD4AD /* CityWeatherDetailViewController.m in Sources */,
+				4C6C696A1B845F350091AD1D /* WeatherAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

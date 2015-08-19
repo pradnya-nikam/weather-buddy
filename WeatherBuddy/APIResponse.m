@@ -15,11 +15,12 @@
 }
 
 +(APIResponse *)withJSON:(NSDictionary *)json{
-    APIResponse *apiError = [APIResponse new];
-    apiError.code = json[@"cod"];
-    if (![apiError isSuccess]) {
-        apiError.errorMessage = json[@"message"];
+    APIResponse *response = [APIResponse new];
+    response.json = json;
+    response.code = json[@"cod"];
+    if (![response isSuccess]) {
+        response.errorMessage = json[@"message"];
     }
-    return apiError;
+    return response;
 }
 @end
