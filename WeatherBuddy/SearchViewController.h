@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+- (IBAction)updateWeatherForCurrentLocation:(id)sender;
 @end
 

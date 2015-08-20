@@ -11,12 +11,16 @@
 #import "APIResponse.h"
 #import "QueryParser.h"
 #import "WeatherAPI.h"
+#import <CoreLocation/CoreLocation.h>
+#import "ReceivingWeatherByLocation.h"
 
 NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 
-@interface SearchService()
+@interface SearchService() <CLLocationManagerDelegate>
 @property QueryParser *queryParser;
 @property WeatherAPI *weatherAPI;
+@property CLLocationManager *locationManager;
+@property(weak) id<ReceivingWeatherByLocation> weatherRecieverDelegate;
 @end
 
 
@@ -32,6 +36,7 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
     }
     return self;
 }
+#pragma Search by city
 
 -(NSArray *)search:(NSString *)query{
     NSArray *cityArray = [_queryParser parseSearchQuery:query];
@@ -65,4 +70,48 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
     [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:errorInfo];
 }
 
+#pragma Search by location
+
+-(void)getWeatherForCurrentCityWithDelegate:(id)delegate{
+    self.weatherRecieverDelegate = delegate;
+    if (!_locationManager)
+        _locationManager = [[CLLocationManager alloc] init];
+
+    _locationManager.delegate = self;
+    _locationManager.distanceFilter = 1000.0;
+    // check for iOS 8
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    [_locationManager startUpdatingLocation];
+}
+
+-(void) searchByLocation:(CLLocation *)location{
+    APIResponse *response = [_weatherAPI searchForLocation:location];
+    if ([response isSuccess]) {
+        City *city = [City cityWithJSON:response.json];
+        if (city)
+            [_weatherRecieverDelegate weatherForCurrentLocation:city];
+    }else{
+        [self handleErrorForResponse:response andQuery:nil];
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+
+    CLLocation* location = [locations lastObject];
+        NSLog(@"latitude %+.6f, longitude %+.6f\n",
+              location.coordinate.latitude,
+              location.coordinate.longitude);
+    [self searchByLocation:location];
+    [_locationManager stopUpdatingLocation];
+}
 @end

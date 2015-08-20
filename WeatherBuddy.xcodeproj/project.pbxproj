@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C6C69671B845DC80091AD1D /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C69661B845DC80091AD1D /* QueryParser.m */; };
 		4C6C696A1B845F350091AD1D /* WeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C69691B845F350091AD1D /* WeatherAPI.m */; };
+		4C6C696C1B85A77E0091AD1D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6C696B1B85A77E0091AD1D /* CoreLocation.framework */; };
 		4C7897C11B8209BE0024BF4A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C01B8209BE0024BF4A /* City.m */; };
 		4C7897C41B820A040024BF4A /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C31B820A040024BF4A /* Weather.m */; };
 		4C7897C71B820B4A0024BF4A /* Temperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7897C61B820B4A0024BF4A /* Temperature.m */; };
@@ -42,6 +43,8 @@
 		4C6C69661B845DC80091AD1D /* QueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParser.m; sourceTree = "<group>"; };
 		4C6C69681B845F350091AD1D /* WeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAPI.h; sourceTree = "<group>"; };
 		4C6C69691B845F350091AD1D /* WeatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAPI.m; sourceTree = "<group>"; };
+		4C6C696B1B85A77E0091AD1D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4C6C696E1B85B68C0091AD1D /* ReceivingWeatherByLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivingWeatherByLocation.h; sourceTree = "<group>"; };
 		4C7897BF1B8209BE0024BF4A /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		4C7897C01B8209BE0024BF4A /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		4C7897C21B820A040024BF4A /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C6C696C1B85A77E0091AD1D /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +156,7 @@
 				4C6C69661B845DC80091AD1D /* QueryParser.m */,
 				4C6C69681B845F350091AD1D /* WeatherAPI.h */,
 				4C6C69691B845F350091AD1D /* WeatherAPI.m */,
+				4C6C696E1B85B68C0091AD1D /* ReceivingWeatherByLocation.h */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 		4CFE0C331B7DC186006AD4AD = {
 			isa = PBXGroup;
 			children = (
+				4C6C696B1B85A77E0091AD1D /* CoreLocation.framework */,
 				4CFE0C3E1B7DC186006AD4AD /* WeatherBuddy */,
 				4CFE0C5B1B7DC186006AD4AD /* WeatherBuddyTests */,
 				4CFE0C3D1B7DC186006AD4AD /* Products */,

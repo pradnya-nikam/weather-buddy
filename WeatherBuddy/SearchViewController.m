@@ -12,10 +12,11 @@
 #import "City.h"
 #import "Weather.h"
 #import "CityTableViewCell.h"
+#import "ReceivingWeatherByLocation.h"
 
 NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
 
-@interface SearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
+@interface SearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, ReceivingWeatherByLocation>
 @property (nonatomic, strong) UISearchController *searchController;
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property SearchService *searchService;
@@ -34,12 +35,11 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
     [self setUpSearchController];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAPIError:) name:API_ERROR_NOTIFICATION object:nil];
-
+    
 }
 -(void)setUpSearchController{
     _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     _searchController.searchResultsUpdater = self;
-    self.tableView.tableHeaderView = _searchController.searchBar;
     self.tableView.tableHeaderView = _searchController.searchBar;
     self.definesPresentationContext = YES;
     [_searchController.searchBar sizeToFit];
@@ -65,9 +65,6 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.searchResults.count;
@@ -110,4 +107,14 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
     return DEFAULT_ERROR_MESSAGE;
 }
 
+#pragma current location weather
+
+- (IBAction)updateWeatherForCurrentLocation:(id)sender {
+    [self.searchService getWeatherForCurrentCityWithDelegate:self];
+}
+
+-(void)weatherForCurrentLocation:(City *)city{
+    _searchResults = [NSMutableArray arrayWithArray:@[city]];
+    [self.tableView reloadData];
+}
 @end

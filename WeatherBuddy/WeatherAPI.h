@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "APIResponse.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface WeatherAPI : NSObject
 -(APIResponse *) searchForCity:(NSString *)city;
+-(APIResponse *)searchForLocation:(CLLocation *)location;
 @end

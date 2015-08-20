@@ -29,6 +29,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="vGi-RS-djQ">
+                            <rect key="frame" x="0.0" y="166" width="600" height="91"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenDisabled="NO" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gaQ-eL-LqL">
+                                    <rect key="frame" x="130" y="50" width="341" height="30"/>
+                                    <color key="backgroundColor" red="0.68254861150000001" green="0.89968708389999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="click here to view weather at your current location"/>
+                                    <variation key="widthClass=compact">
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                    </variation>
+                                    <connections>
+                                        <action selector="updateWeatherForCurrentLocation:" destination="pGg-6v-bdr" eventType="touchUpInside" id="RLU-UZ-UDp"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="gaQ-eL-LqL" firstAttribute="top" secondItem="vGi-RS-djQ" secondAttribute="top" constant="50" id="GIx-IW-1Gt"/>
+                                <constraint firstAttribute="centerX" secondItem="gaQ-eL-LqL" secondAttribute="centerX" id="fCv-vc-hxs"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="city-cell" rowHeight="80" id="m0d-ak-lc9" customClass="CityTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -63,7 +85,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20-25 °C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdS-C6-64D">
-                                            <rect key="frame" x="459.5" y="48" width="49.5" height="20"/>
+                                            <rect key="frame" x="479.5" y="48" width="49.5" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="3la-dE-bBS"/>
                                             </constraints>
@@ -74,11 +96,13 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="GAz-47-U7m" secondAttribute="centerY" id="3kF-fs-ald"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="tdS-C6-64D" secondAttribute="trailing" constant="50" id="98z-xw-ZrV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tdS-C6-64D" secondAttribute="trailing" constant="30" id="98z-xw-ZrV"/>
                                         <constraint firstItem="GAz-47-U7m" firstAttribute="leading" secondItem="MMC-OK-Kux" secondAttribute="trailing" constant="10" id="Dfg-mh-U8l"/>
                                         <constraint firstAttribute="centerY" secondItem="MMC-OK-Kux" secondAttribute="centerY" id="EqZ-8B-AsR"/>
                                         <constraint firstItem="tdS-C6-64D" firstAttribute="top" secondItem="MMg-Wk-7IJ" secondAttribute="bottom" constant="5" id="Ppw-Bf-g3U"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="MMg-Wk-7IJ" secondAttribute="trailing" constant="50" id="Thp-7C-vNh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MMg-Wk-7IJ" secondAttribute="trailing" constant="50" id="Thp-7C-vNh">
+                                            <variation key="widthClass=compact" constant="30"/>
+                                        </constraint>
                                         <constraint firstItem="MMC-OK-Kux" firstAttribute="leading" secondItem="d3P-M7-ByW" secondAttribute="leadingMargin" constant="5" id="U8u-Nc-bJF"/>
                                         <constraint firstItem="MMg-Wk-7IJ" firstAttribute="top" secondItem="d3P-M7-ByW" secondAttribute="topMargin" constant="15" id="tMv-Xe-1uF"/>
                                     </constraints>
@@ -101,10 +125,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="WeatherBuddy" id="tQt-TN-PWz"/>
+                    <connections>
+                        <outlet property="footerView" destination="vGi-RS-djQ" id="IXw-fH-b9l"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="605" y="64"/>
+            <point key="canvasLocation" x="604.5" y="64"/>
         </scene>
         <!--Detail-->
         <scene sceneID="Cn3-H9-jdl">

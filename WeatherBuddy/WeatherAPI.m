@@ -8,11 +8,27 @@
 
 #import "WeatherAPI.h"
 
-NSString * const API_SEARCH_URL = @"http://api.openweathermap.org/data/2.5/forecast/daily?q=%@&cnt=14&units=metric&APPID=f4e5d60cb525957507b32ef0f683889e";
+NSString * const API_SEARCH_BY_CITY_URL = @"http://api.openweathermap.org/data/2.5/forecast/daily?q=%@&cnt=14&units=metric&APPID=f4e5d60cb525957507b32ef0f683889e";
+
+NSString * const API_SEARCH_BY_LOCATION_URL = @"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%f&lon=%f&cnt=14&units=metric&APPID=f4e5d60cb525957507b32ef0f683889e";
+
 
 @implementation WeatherAPI
 -(APIResponse *) searchForCity:(NSString *)city{
-    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:API_SEARCH_URL,city]];
+    NSString *url = [NSString stringWithFormat:API_SEARCH_BY_CITY_URL,city];
+    return [self sendRequestToAPIWithURL:url];
+}
+
+
+
+-(APIResponse *)searchForLocation:(CLLocation *)location{
+    NSString *url = [NSString stringWithFormat:API_SEARCH_BY_LOCATION_URL,location.coordinate.latitude,location.coordinate.longitude];
+    return [self sendRequestToAPIWithURL:url];
+}
+
+
+-(APIResponse *)sendRequestToAPIWithURL:(NSString *)urlString{
+    NSURL *url=[NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30.0];
     
     NSURLResponse *response;
