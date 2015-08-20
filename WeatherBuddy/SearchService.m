@@ -38,7 +38,7 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 }
 #pragma Search by city
 
--(NSArray *)search:(NSString *)query{
+-(NSArray *)searchWeatherForCities:(NSString *)query{
     NSArray *cityArray = [_queryParser parseSearchQuery:query];
     if (cityArray.count) {
         return [self searchForCities:cityArray];
@@ -55,29 +55,21 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
                 if (city)
                     [cityWeathers addObject:city];
         }else{
-                [self handleErrorForResponse:response andQuery:city];
+                [self handleErrorForMessage:response.errorMessage andQuery:city];
         }
     }
     return cityWeathers;
 }
 
--(void)handleErrorForResponse:(APIResponse *)response andQuery:(NSString *)query{
-    NSDictionary *errorInfo=nil;
-    if(response){
-        NSString *errorMessage = [NSString stringWithFormat:@"%@ for search : %@", response.errorMessage, query];
-        errorInfo = @{@"errorMessage":errorMessage};
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:errorInfo];
-}
-
 #pragma Search by location
 
--(void)getWeatherForCurrentCityWithDelegate:(id)delegate{
+-(void)searchWeatherForCurrentLocationWithDelegate:(id)delegate{
     self.weatherRecieverDelegate = delegate;
     if (!_locationManager)
         _locationManager = [[CLLocationManager alloc] init];
 
     _locationManager.delegate = self;
+    //added a high value for filter to avoid repetitive location updates
     _locationManager.distanceFilter = 1000.0;
     // check for iOS 8
     if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -93,7 +85,7 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
         if (city)
             [_weatherRecieverDelegate weatherForCurrentLocation:city];
     }else{
-        [self handleErrorForResponse:response andQuery:nil];
+        [self handleErrorForMessage:response.errorMessage andQuery:nil];
     }
 }
 
@@ -101,17 +93,24 @@ NSString * const API_ERROR_NOTIFICATION = @"API_ERROR_NOTIFICATION";
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError: %@", error);
+    NSLog(@"location manager failed with error: %@", error);
 }
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
-
     CLLocation* location = [locations lastObject];
-        NSLog(@"latitude %+.6f, longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
     [self searchByLocation:location];
     [_locationManager stopUpdatingLocation];
+}
+
+#pragma error handling 
+
+-(void)handleErrorForMessage:(NSString *)message andQuery:(NSString *)query{
+    NSDictionary *errorInfo=nil;
+    if(message){
+        NSString *errorMessage = [NSString stringWithFormat:@"%@ for search : %@", message, query];
+        errorInfo = @{@"errorMessage":errorMessage};
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:API_ERROR_NOTIFICATION object:self userInfo:errorInfo];
 }
 @end

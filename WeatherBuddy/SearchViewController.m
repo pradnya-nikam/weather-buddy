@@ -54,7 +54,7 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSArray *search = [self.searchService search:searchBar.text];
+    NSArray *search = [self.searchService searchWeatherForCities:searchBar.text];
     _searchResults = [NSMutableArray arrayWithArray:search];
     [self.tableView reloadData];
     
@@ -107,10 +107,10 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
     return DEFAULT_ERROR_MESSAGE;
 }
 
-#pragma current location weather
+#pragma weather for current location
 
 - (IBAction)updateWeatherForCurrentLocation:(id)sender {
-    [self.searchService getWeatherForCurrentCityWithDelegate:self];
+    [self.searchService searchWeatherForCurrentLocationWithDelegate:self];
 }
 
 -(void)weatherForCurrentLocation:(City *)city{

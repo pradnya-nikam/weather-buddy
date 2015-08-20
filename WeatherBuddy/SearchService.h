@@ -10,7 +10,7 @@
 
 @interface SearchService : NSObject
 extern NSString * const API_ERROR_NOTIFICATION;
--(NSArray *)search:(NSString *)query;
--(void)getWeatherForCurrentCityWithDelegate:(id)delegate;
+-(NSArray *)searchWeatherForCities:(NSString *)query;
+-(void)searchWeatherForCurrentLocationWithDelegate:(id)delegate;
 
 @end
