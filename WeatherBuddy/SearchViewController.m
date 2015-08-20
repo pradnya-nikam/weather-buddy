@@ -40,9 +40,9 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
 -(void)setUpSearchController{
     _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     _searchController.searchResultsUpdater = self;
+    [_searchController.searchBar sizeToFit];
     self.tableView.tableHeaderView = _searchController.searchBar;
     self.definesPresentationContext = YES;
-    [_searchController.searchBar sizeToFit];
     [_searchController.searchBar setPlaceholder:@"search for cities to view weather"];
     _searchController.searchBar.delegate = self;
 }
@@ -114,7 +114,7 @@ NSString * const DEFAULT_ERROR_MESSAGE = @"Sorry! Unknown error occured";
 }
 
 -(void)weatherForCurrentLocation:(City *)city{
-    _searchResults = [NSMutableArray arrayWithArray:@[city]];
+    _searchResults = [NSMutableArray arrayWithObject:city];
     [self.tableView reloadData];
 }
 @end
